@@ -7,7 +7,9 @@ function App() {
   const ws = useRef(null);
 
   useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:8080');
+    // ws.current = new WebSocket('ws://localhost:8080');
+    ws.current = new WebSocket('wss://votimi-server.onrender.com');
+
 
     ws.current.onopen = () => {
       console.log('Lidhur me serverin WebSocket');
