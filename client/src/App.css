@@ -140,3 +140,58 @@ hr {
   font-size: 1.2rem;
   text-align: right;
 }
+
+.reset-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: inline-block;
+}
+
+.reset-button {
+  background-color: transparent;
+  border: 1px solid #dddfe2;
+  color: #606770;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* E bën rrethor */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0;
+}
+
+.reset-button:hover {
+  background-color: #f0f2f5;
+  color: #1c1e21;
+}
+
+.reset-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.reset-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+

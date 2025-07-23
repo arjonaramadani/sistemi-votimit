@@ -2,11 +2,13 @@ const WebSocket = require('ws');
 
 const wss = new WebSocket.Server({ port: 8080 });
 
-let pollState = {
+const createInitialPollState = () => ({
     'Opsioni A': 0,
     'Opsioni B': 0,
     'Opsioni C': 0,
-};
+});
+
+let pollState = createInitialPollState();
 
 console.log("Serveri WebSocket po funksionon në portin 8080...");
 
@@ -23,21 +25,25 @@ function broadcastPollState() {
 
 wss.on('connection', ws => {
     console.log('Klient i ri u lidh.');
-
     ws.send(JSON.stringify(pollState));
 
     ws.on('message', message => {
         try {
             const parsedMessage = JSON.parse(message);
 
-            if (parsedMessage.vote && pollState.hasOwnProperty(parsedMessage.vote)) {
+            if (parsedMessage.action === 'reset') {
+                console.log("Komanda për rinisje u mor. Votat u kthyen në zero.");
+                pollState = createInitialPollState();
+                broadcastPollState();
+            
+            } else if (parsedMessage.vote && pollState.hasOwnProperty(parsedMessage.vote)) {
                 pollState[parsedMessage.vote]++;
                 console.log(`Votë e marrë për: ${parsedMessage.vote}. Gjendja e re:`, pollState);
-
                 broadcastPollState();
             } else {
                 console.log("Mesazh i pavlefshëm ose opsion i panjohur:", parsedMessage);
             }
+
         } catch (error) {
             console.error("Gabim gjatë analizimit të mesazhit:", error);
         }
