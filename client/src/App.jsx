@@ -84,20 +84,20 @@ function App() {
           </div>
         </div>
         <div className="results-container">
-          <h2>Rezultatet</h2>
-          
-          <div className="reset-container">
-            <button className="reset-button" onClick={handleReset} aria-label="Reset">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M23 4v6h-6"></path>
-                <path d="M1 20v-6h6"></path>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
-                <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
-              </svg>
-            </button>
-            <span className="tooltip-text">Reset</span>
+          <div className="results-header">
+            <h2>Rezultatet</h2>
+            <div className="reset-container">
+              <button className="reset-button" onClick={handleReset} aria-label="Reset">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M23 4v6h-6"></path>
+                  <path d="M1 20v-6h6"></path>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
+                  <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
+                </svg>
+              </button>
+              <span className="tooltip-text">Reset</span>
+            </div>
           </div>
-
           {pollState ? (
             <div className="results">
               {Object.entries(pollState).map(([option, votes]) => {
